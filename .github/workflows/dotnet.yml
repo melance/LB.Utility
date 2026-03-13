@@ -27,4 +27,4 @@ jobs:
     - name: Restore dependencies 
       run: dotnet restore LB.Utility.sln
     - name: Build
-      run: dotnet build LB.Utility.sln --configuration release --no-restore
+      run: dotnet build LB.Utility.sln --configuration release --no-restore -p:EnableWindowsTargeting=true
