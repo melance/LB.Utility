@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies lb.utility.sln
+    - name: Restore dependencies src/lb.utility.sln
       run: dotnet restore
     - name: Build
-      run: dotnet build lb.utility.sln --configuration release --no-restore
+      run: dotnet build src/lb.utility.sln --configuration release --no-restore
