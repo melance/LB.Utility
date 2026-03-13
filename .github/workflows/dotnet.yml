@@ -12,15 +12,19 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: src
 
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
-    - name: Restore dependencies lb.utility.sln
-      run: dotnet restore
+        dotnet-version: 10.0.x
+    - name: Restore dependencies 
+      run: dotnet restore LB.Utility.sln
     - name: Build
-      run: dotnet build lb.utility.sln --configuration release --no-restore
+      run: dotnet build LB.Utility.sln --configuration release --no-restore
