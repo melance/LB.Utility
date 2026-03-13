@@ -30,10 +30,10 @@ jobs:
     - name: Restore dependencies 
       run: dotnet restore LB.Utility.sln
     - name: Build
-      run: dotnet build LB.Utility.sln --configuration release --no-restore
+      run: dotnet build LB.Utility.sln --configuration Release --no-restore
       
     - name: Pack
-      run: dotnet pack LB.Utility/LB.Utility.csproj -c release --no-build -o ./nupkg
+      run: dotnet pack LB.Utility/LB.Utility.csproj -c Release --no-build -o ./nupkg
 
     - name: Nuget login (OIDC → temp API key)
       uses: Nuget/login@v1
