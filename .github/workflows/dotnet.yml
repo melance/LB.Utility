@@ -15,6 +15,7 @@ jobs:
       id-token: write
 
     runs-on: ubuntu-latest
+    environment: release
 
     defaults:
       run:
