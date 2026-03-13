@@ -33,7 +33,7 @@ jobs:
       run: dotnet build LB.Utility.sln --configuration release --no-restore
       
     - name: Pack
-      run: dotnet pack src/LB.Utility/LB.Utility.csproj -c release --no-build -o ./nupkg
+      run: dotnet pack LB.Utility/LB.Utility.csproj -c release --no-build -o ./nupkg
 
     - name: Nuget login (OIDC → temp API key)
       uses: Nuget/login@v1
