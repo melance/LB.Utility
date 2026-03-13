@@ -49,6 +49,13 @@ namespace LB.Utility.Extensions
 			return extended.ToString();
 		}
 
+        public static Boolean HasValue([NotNullWhen(true)] this String? extended, Boolean allowWhitespace = true)
+        {
+            if (extended == null) return false;
+            if (allowWhitespace) return !String.IsNullOrEmpty(extended);
+            return !String.IsNullOrWhiteSpace(extended);
+        }
+
         /// <summary>
         /// Indicates whether a specified string is null or empty.
         /// </summary>
