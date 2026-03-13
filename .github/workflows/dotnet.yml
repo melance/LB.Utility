@@ -10,7 +10,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-publish:
+    permissions:
+      id-token: write
 
     runs-on: ubuntu-latest
 
@@ -28,3 +30,12 @@ jobs:
       run: dotnet restore LB.Utility.sln
     - name: Build
       run: dotnet build LB.Utility.sln --configuration release --no-restore
+
+    - name: Nuget login (OIDC → temp API key)
+      uses: Nuget/login@v1
+      id: login
+      with:
+        user: ${{secrets.NUGET_USER}}
+
+    - name: Nuget Push
+      run: dotnet nuget push artifacts/LB.Utility.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
