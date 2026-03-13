@@ -31,6 +31,9 @@ jobs:
       run: dotnet restore LB.Utility.sln
     - name: Build
       run: dotnet build LB.Utility.sln --configuration release --no-restore
+      
+    - name: Pack
+      run: dotnet pack src/LB.Utility/LB.Utility.csproj -c release --no-build -o ./nupkg
 
     - name: Nuget login (OIDC → temp API key)
       uses: Nuget/login@v1
@@ -39,4 +42,4 @@ jobs:
         user: ${{secrets.NUGET_USER}}
 
     - name: Nuget Push
-      run: dotnet nuget push artifacts/LB.Utility.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./nupkg/*.nupkg --api-key ${{steps.login.outputs.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
