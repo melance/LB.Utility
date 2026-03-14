@@ -11,11 +11,13 @@
     <IsPackable>true</IsPackable>
     <PackageId>LB.Utility</PackageId>
     <Version>1.0.0</Version>
+    <PackageVersion>$(Version)</PackageVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
     <Authors>Lance Boudreaux</Authors>
     <Description>A collection of utilities and extensions used across my .NET projects.</Description>
     <RepositoryUrl>https://github.com/melance/LB.Utility</RepositoryUrl>
     <PackageTags>utilities helpers extensions</PackageTags>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
