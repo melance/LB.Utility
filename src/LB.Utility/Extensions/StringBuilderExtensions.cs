@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace LB.Utility
+namespace LB.Utility.Extensions;
+
+/// <summary>
+/// Extenions methods for the StringBuilder type
+/// </summary>
+public static class StringBuilderExtensions
 {
-    public static class StringBuilderExtensions
-    {
 		/// <summary>
 		/// Returns true if the string builder is empty
 		/// </summary>
@@ -34,4 +33,3 @@ namespace LB.Utility
 			return String.IsNullOrWhiteSpace(extended.ToString());
 		}
 	}
-}

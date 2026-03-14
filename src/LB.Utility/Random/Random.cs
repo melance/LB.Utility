@@ -4,26 +4,15 @@ using System.Text;
 
 namespace LB.Utility.Random;
 
+/// <summary>
+/// A crossplatform pseudo random number generator
+/// </summary>
 public sealed class PseudoRNG
 {
-
-    public static PseudoRNG Initialize()
-    {
-        return Initialize(null);
-    }
-    public static PseudoRNG Initialize(UInt64 seed)
-    {
-        Instance = new(seed);
-        return Instance;
-    }
-    public static PseudoRNG Initialize(String? seed)
-    {
-        Instance = seed == null ? new() : new(seed);
-        return Instance;
-    }
-
-    public static PseudoRNG? Instance { get; private set; }
-
+    #region Static Methods
+    /// <summary>
+    /// Generates a random seed used when no seed is provided in the constructor
+    /// </summary>
     private static UInt64 CreateRandomSeed()
     {
         Span<Byte> bytes = stackalloc byte[8];
@@ -31,6 +20,12 @@ public sealed class PseudoRNG
         return BitConverter.ToUInt64(bytes);
     }
 
+    /// <summary>
+    /// Converts the <paramref name="seed"/> to a UInt64 for use as a seed
+    /// </summary>
+    /// <param name="seed">The seed for the generator</param>
+    /// <returns></returns>
+    /// <exception cref="ArgumentException">Thrown if the seed is an <see cref="String.Empty"/></exception>
     private static UInt64 SeedFromString(String seed)
     {
         if (String.IsNullOrWhiteSpace(seed))
@@ -39,7 +34,8 @@ public sealed class PseudoRNG
         var bytes = SHA256.HashData(Encoding.UTF8.GetBytes(seed));
 
         return BitConverter.ToUInt64(bytes, 0);
-    }
+    } 
+    #endregion
 
     #region Members
     private UInt64 _state;
@@ -47,19 +43,26 @@ public sealed class PseudoRNG
     #endregion
 
     #region Properties
+    /// <summary>
+    /// The seed used to prime the generator
+    /// </summary>
     public String Seed { get; }
     #endregion
 
     #region Constructors
+    /// <summary>
+    /// Creates a PCG32 RNG
+    /// </summary>
+    /// <param name="seed">Initial state seed</param>
     public PseudoRNG(String? seed = null) : this(String.IsNullOrWhiteSpace(seed) ? CreateRandomSeed() : SeedFromString(seed))
     {
     }
 
     /// <summary>
-    /// Creates a PCG32 RNG.
+    /// Creates a PCG32 RNG
     /// </summary>
-    /// <param name="seed">Initial state seed.</param>
-    /// <param name="sequence">Stream selector (must be odd internally).</param>
+    /// <param name="seed">Initial state seed</param>
+    /// <param name="sequence">Stream selector (must be odd internally)</param>
     public PseudoRNG(UInt64 seed, UInt64 sequence = 54u)
     {
         Seed = seed.ToString();

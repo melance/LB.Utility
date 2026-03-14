@@ -3,6 +3,9 @@ using System.Text;
 
 namespace LB.Utility.Extensions;
 
+/// <summary>
+/// Extensions for numeric data types
+/// </summary>
 public static class NumericExtensions
 {
     #region Members
