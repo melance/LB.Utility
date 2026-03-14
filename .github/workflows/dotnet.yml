@@ -31,6 +31,12 @@ jobs:
       run: dotnet restore LB.Utility.sln
     - name: Build
       run: dotnet build LB.Utility.sln --configuration Release --no-restore
+
+    - name: Set Version Variables
+      run: |
+        echo "PACKAGE_VERSION=1.0.${{github.run_number}}" >> $GITHUB_ENV
+        echo "FILE_VERSION=1.0.0.${{github.run_number}}" >> $GITHUB_ENV
+        echo "ASSEMBLY_VERSION=1.0.0.0" >> $GITHUB_ENV
       
     - name: Pack
       run: dotnet pack LB.Utility/LB.Utility.csproj -c Release --no-build -o ./nupkg
