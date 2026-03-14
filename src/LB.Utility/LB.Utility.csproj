@@ -18,15 +18,12 @@
     <Description>A collection of utilities and extensions used across my .NET projects.</Description>
     <RepositoryUrl>https://github.com/melance/LB.Utility</RepositoryUrl>
     <PackageTags>utilities helpers extensions</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\..\README.md" Link="README.md">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="" />
     <PackageReference Include="Markdig.Signed" Version="0.44.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.3.9" />
   </ItemGroup>
