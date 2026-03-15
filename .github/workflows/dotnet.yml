@@ -22,7 +22,14 @@ jobs:
         working-directory: src
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checout LB.Utility
+      uses: actions/checkout@v4
+    - name: Checkout NetDocMD
+      uses: actions/checkout@v4
+      with:
+        repository: mealnce/NetDocMD
+        ref: main
+        path: tools/NetDocMD
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
