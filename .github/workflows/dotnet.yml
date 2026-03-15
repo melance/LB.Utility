@@ -48,7 +48,7 @@ jobs:
       run: >
         dotnet run --project tools/NetDocMD/NetDocMD/NetDocMD.csproj --
         --xml src/LB.Utility/bin/Release/net10.0/LB.Utility.xml
-        --readme src/LB.Utility/README.md
+        --readme LB.Utility/README.md
 
     - name: Commit updated README
       if: github.ref == 'refs/head/main'
