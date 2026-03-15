@@ -49,16 +49,11 @@ jobs:
       run: dotnet build LB.Utility.sln --configuration Release --no-restore
 
     - name: Update README
+      working-directory: ${{ github.workspace }}
       run: >
         dotnet run --project tools/NetDocMD/NetDocMD/NetDocMD.csproj --
         --xml src/LB.Utility/bin/Release/net10.0/LB.Utility.xml
         --readme README.md
-
-    - name: Set Version Variables
-      run: |
-        echo "PACKAGE_VERSION=1.0.${{github.run_number}}" >> $GITHUB_ENV
-        echo "FILE_VERSION=1.0.0.${{github.run_number}}" >> $GITHUB_ENV
-        echo "ASSEMBLY_VERSION=1.0.0.0" >> $GITHUB_ENV
 
     - name: Commit updated README
       if: github.ref == 'refs/head/main'
@@ -69,6 +64,12 @@ jobs:
         git diff --cached --guiet || git commit -m "Update README"
         git push
     
+    - name: Set Version Variables
+      run: |
+        echo "PACKAGE_VERSION=1.0.${{github.run_number}}" >> $GITHUB_ENV
+        echo "FILE_VERSION=1.0.0.${{github.run_number}}" >> $GITHUB_ENV
+        echo "ASSEMBLY_VERSION=1.0.0.0" >> $GITHUB_ENV
+        
     - name: Pack
       run: >
         dotnet pack LB.Utility/LB.Utility.csproj 
