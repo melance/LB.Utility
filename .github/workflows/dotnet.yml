@@ -27,7 +27,7 @@ jobs:
     - name: Checkout NetDocMD
       uses: actions/checkout@v4
       with:
-        repository: mealnce/NetDocMD
+        repository: melance/NetDocMD
         ref: main
         path: tools/NetDocMD
     - name: Setup .NET
