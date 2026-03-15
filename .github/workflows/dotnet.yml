@@ -31,11 +31,6 @@ jobs:
         repository: melance/NetDocMD
         ref: main
         path: tools/NetDocMD
-
-    - name: Show workspace content
-      run: |
-        pwd
-        ls -la -R
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -53,7 +48,7 @@ jobs:
       run: >
         dotnet run --project tools/NetDocMD/NetDocMD/NetDocMD.csproj --
         --xml src/LB.Utility/bin/Release/net10.0/LB.Utility.xml
-        --readme README.md
+        --readme src/LB.Utility/README.md
 
     - name: Commit updated README
       if: github.ref == 'refs/head/main'
