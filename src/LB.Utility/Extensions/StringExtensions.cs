@@ -1,5 +1,4 @@
-﻿using Markdig.Helpers;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Text;
 
@@ -315,9 +314,9 @@ public static class StringExtensions
         var decimalFound = false;
         var c = extended[0];
 
-        while (c.IsDigit() || (c == '.' && !decimalFound) || c == ',')
+        while (Char.IsDigit(c) || (c == '.' && !decimalFound) || c == ',')
         {
-            if (c.IsDigit()) digits.Append(c);
+            if (Char.IsDigit(c)) digits.Append(c);
             if (c == '.')
             {
                 digits.Append(c);
