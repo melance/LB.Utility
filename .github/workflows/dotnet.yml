@@ -35,8 +35,7 @@ jobs:
     - name: Show workspace content
       run: |
         pwd
-        ls -la
-        ls -la tools -R
+        ls -la -R
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
