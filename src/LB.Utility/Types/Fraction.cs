@@ -15,6 +15,7 @@ public struct Fraction
     public Fraction(Double d)
     {
         var result = DoubleToFraction(d);
+        WholeNumber = result.WholeNumber;
         Numerator = result.Numerator;
         Denominator = result.Denominator;
         Simplify();
@@ -47,6 +48,8 @@ public struct Fraction
 
     public override String ToString()
     {
+        if (Numerator == 0) return WholeNumber.ToString();
+        if (WholeNumber == 0) return $"{Numerator}/{Denominator}";
         return $"{WholeNumber} {Numerator}/{Denominator}";
     }
 
@@ -126,18 +129,6 @@ public struct Fraction
     public static explicit operator Double(Fraction a)
     {
         return a.WholeNumber + ((Double)a.Numerator / a.Denominator);
-    }
-
-    private static (Fraction a, Fraction b) Normalize(Fraction a, Fraction b)
-    {
-        var lcm = LCM(a.Denominator, b.Denominator);
-        return (ApplyLCM(a, lcm), ApplyLCM(b, lcm));
-    }
-
-    private static Fraction ApplyLCM(Fraction f, Int32 lcm)
-    {
-        var mult = lcm / f.Denominator;
-        return new Fraction(f.WholeNumber, f.Numerator * mult, f.Denominator * mult);
     }
 
     private static Fraction DoubleToFraction(Double value)

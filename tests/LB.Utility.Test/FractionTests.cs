@@ -8,12 +8,14 @@ public sealed class FractionTests
     public TestContext TestContext { get; set; }
 
     [TestMethod]
-    [DataRow(0.5, 1, 2)]
-    [DataRow(0.25, 1, 4)]
-    [DataRow(0.75, 3, 4)]
-    public void SimpleFractions(Double value, Int32 n, Int32 d)
+    [DataRow(0.5, 0, 1, 2)]
+    [DataRow(0.25, 0, 1, 4)]
+    [DataRow(0.75, 0, 3, 4)]
+    [DataRow(1.5, 1, 1, 2)]
+    public void SimpleFractions(Double value, Int32 w, Int32 n, Int32 d)
     {
         var fraction = new Fraction(value);
+        Assert.AreEqual(w, fraction.WholeNumber);
         Assert.AreEqual(n, fraction.Numerator);
         Assert.AreEqual(d, fraction.Denominator);
     }
@@ -45,5 +47,15 @@ public sealed class FractionTests
         var b = new Fraction(0, 1, 4);
         var c = a - b;
         Assert.AreEqual(new Fraction(0, 1, 4), c);
+    }
+
+    [TestMethod]
+    [DataRow(0.5, "1/2")]
+    [DataRow(1.0, "1")]
+    [DataRow(1.5, "1 1/2")]
+    public void ToStringTest(Double value, String expected)
+    {
+        var fraction = new Fraction(value);
+        Assert.AreEqual(expected, fraction.ToString());
     }
 }
