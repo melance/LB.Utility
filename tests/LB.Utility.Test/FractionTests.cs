@@ -58,4 +58,11 @@ public sealed class FractionTests
         var fraction = new Fraction(value);
         Assert.AreEqual(expected, fraction.ToString());
     }
+
+    [TestMethod]
+    public void ToStringCustomTest()
+    {
+        var fraction = new Fraction(1, 1, 3);
+        Assert.AreEqual("1 1 / 3", fraction.ToString("{W} {N} / {D}"));
+    }
 }

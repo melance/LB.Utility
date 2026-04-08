@@ -35,6 +35,7 @@ public struct Fraction
             WholeNumber++;
             n -= d;
         }
+        Numerator = n;
     }
 
     public override Boolean Equals([NotNullWhen(true)] Object? obj)
@@ -51,6 +52,24 @@ public struct Fraction
         if (Numerator == 0) return WholeNumber.ToString();
         if (WholeNumber == 0) return $"{Numerator}/{Denominator}";
         return $"{WholeNumber} {Numerator}/{Denominator}";
+    }
+
+    public String ToString(String? format)
+    {
+        if (String.IsNullOrWhiteSpace(format)) return ToString();
+        var improperNumerator = Denominator == 0
+                                ? WholeNumber
+                                : Numerator + Denominator * WholeNumber;
+
+        return format.Replace("{W}", WholeNumber.ToString())
+                     .Replace("{w}", WholeNumber == 0 ? String.Empty : WholeNumber.ToString())
+                     .Replace("{N}", Numerator.ToString())
+                     .Replace("{n}", Numerator == 0 ? String.Empty : Numerator.ToString())
+                     .Replace("{D}", Denominator.ToString())
+                     .Replace("{d}", Denominator == 0 ? String.Empty : Denominator.ToString())
+                     .Replace("{I}", improperNumerator.ToString())
+                     .Replace("{i}", improperNumerator == 0 ? String.Empty : improperNumerator.ToString())
+                     .Replace("{MF}", ToString());
     }
 
     public static Fraction operator *(Fraction a, Fraction b)
