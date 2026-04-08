@@ -331,6 +331,6 @@ public static class NumericExtensions
             minBytes = MaxBytes;
         }
         throw new ArgumentException("Value out of range.", nameof(extended));
-    } 
+    }     
     #endregion
 }

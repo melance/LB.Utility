@@ -1,0 +1,745 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LB.Utility</name>
+    </assembly>
+    <members>
+        <member name="T:LB.Utility.Attributes.EnumAliasAttribute">
+            <summary>
+            Used to decorate an enumerator value with an alias that the value
+            can be selected by
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Attributes.EnumAliasAttribute.GetEnumValue``1(System.Char)">
+            <summary>
+            Will attempt to get the value of the enum by the name or alias
+            </summary>
+            <typeparam name="T">The enumerator type</typeparam>
+            <param name="value">The character value of the enum or its alias</param>
+            <returns>The enum value if it exists, otherwise null</returns>
+        </member>
+        <member name="M:LB.Utility.Attributes.EnumAliasAttribute.GetEnumValue``1(System.String)">
+            <summary>
+            Will attempt to get the value of the enum by the name or alias
+            </summary>
+            <typeparam name="T">The enumerator type</typeparam>
+            <param name="value">The string value of the enum or its alias</param>
+            <returns>The enum value if it exists, otherwise null</returns>
+        </member>
+        <member name="P:LB.Utility.Attributes.EnumAliasAttribute.Aliases">
+            <summary>
+            The list of aliases to know the enum by
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Attributes.EnumAliasAttribute.#ctor(System.String)">
+            <summary>
+            Constructs the EnumAliasAttribute with the provided alias
+            </summary>
+            <param name="alias">The alias to know the enum value by</param>
+        </member>
+        <member name="M:LB.Utility.Attributes.EnumAliasAttribute.#ctor(System.String[])">
+            <summary>
+            Constructs the EnumAliasAttribute with the provided aliases
+            </summary>
+            <param name="aliases">A list of aliases to know the enum value by</param>
+        </member>
+        <member name="T:LB.Utility.Collections.InsensitiveDictionary`1">
+            <summary>
+            A case insensitive Dictionary&lt;String, T&gt;
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Collections.InsensitiveDictionary`1.#ctor">
+            <summary>
+            Constructs an InsensitiveDictionary
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Collections.InsensitiveDictionary`1.Add(System.Collections.Generic.KeyValuePair{System.String,`0})">
+            <summary>
+            Add a new item to the dictionary from the provided <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            </summary>
+            <param name="item">The KeyValuePair to add</param>
+        </member>
+        <member name="T:LB.Utility.Extensions.CharacterExtensions">
+            <summary>
+            Extensions for the Char data type
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.CharacterExtensions.IsVowel(System.Char)">
+            <summary>
+            Determines if the character is a vowel in English
+            </summary>
+            <param name="extended">The character to check</param>
+            <returns>True if the character is a vowel</returns>
+            <remarks>Only works with English</remarks>
+        </member>
+        <member name="T:LB.Utility.Extensions.CollectionExtensions">
+            <summary>
+            Extension methods for Collections
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.TrimAll(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Trim all values of whitespace
+            </summary>
+            <param name="extended">The collection to loop through</param>
+            <returns>The collection with whitespace trimmed from each element</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.NotNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns all non null values from the collection
+            </summary>
+            <typeparam name="T">The type of the IEnumerable</typeparam>
+            <param name="extended">The IEnumerable to process</param>
+            <returns>A IEnumerable with all null values removed</returns>        
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.NotNullOrWhitespace(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Returns all values that are not null, empty, or whitespace.
+            </summary>
+            <param name="extended">The collection to search</param>
+            <returns>A list excluding null, empty, or whitespace elements</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.IsNullOrEmpty``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns true if the collection is null or has no items
+            </summary>
+            <typeparam name="T">The type of the IEnumerable</typeparam>
+            <param name="extended">The list to check</param>
+            <returns>True if the list is null or has no elements</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.GetHalves``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Divides the list into even parts
+            </summary>
+            <typeparam name="T">The type of the IEnumerable</typeparam>
+            <param name="extended">The list to split</param>
+            <remarks>For odd length lists, the first half will have on more element</remarks>
+            <returns>Two lists created from dividing the list in half</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.CollectionExtensions.GetValue``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Gets the value associated with the key or returns default value
+            </summary>
+            <typeparam name="K">The key type</typeparam>
+            <typeparam name="V">The value type</typeparam>
+            <param name="extended">The dictionary to look through</param>
+            <param name="key">The key to look for</param>
+            <param name="defaultValue">The default value to return if the key does not exist</param>
+            <returns>The value from the dictionary if found; otherwise <paramref name="defaultValue"/></returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.DateExtensions">
+            <summary>
+            Extension for Date data types
+            </summary>
+        </member>
+        <member name="T:LB.Utility.Extensions.DateExtensions.DatePart">
+            <summary>
+            The parts of a date time
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.DateExtensions.Truncate(System.DateTime,LB.Utility.Extensions.DateExtensions.DatePart)">
+            <summary>
+            Truncates a date to the granularity provided.
+            </summary>
+            <param name="extended">The <see cref="T:System.DateTime"/> to truncate</param>
+            <param name="part">The granularity to truncate the date to</param>
+            <returns>A <see cref="T:System.DateTime"/> truncated to the provided granularity</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.DateExtensions.ToDateTime``1(``0)">
+            <summary>
+            Attempts to convert the object to a date time value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="extended"></param>
+            <returns>The object as a date time or null if the conversion fails</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.DateExtensions.ToDateTime``1(``0,System.Nullable{System.DateTime})">
+            <summary>
+            Attempts to convert the object to a date time value
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="extended"></param>
+            <returns>The object as a date time or <paramref name="defaultValue"/> if the conversion fails</returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.EnumExtensions">
+            <summary>
+            Extensions for enum types
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.EnumExtensions.GetAttributeOfType``1(System.Enum)">
+            <summary>
+            Gets an attributes associated with the enum value
+            </summary>
+            <typeparam name="T">The enum type</typeparam>
+            <param name="value">The enum type value</param>
+            <returns>The attribute if it exists, otherwise null</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.EnumExtensions.GetDisplayName(System.Enum)">
+            <summary>
+            Gets the Display Name value if the value has the DisplayAttribute
+            </summary>
+            <param name="value">The value to inspect</param>
+            <returns>The Display Name or value.ToString()</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.EnumExtensions.GetDisplayDescription(System.Enum)">
+            <summary>
+            Gets the Display Description value if the value has the DisplayAttribute
+            </summary>
+            <param name="value">The value to inspect</param>
+            <returns>The Display Description or value.ToString()</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.EnumExtensions.GetDisplay(System.Enum)">
+            <summary>
+            Gets the DisplayAttribute if one exists for the value
+            </summary>
+            <param name="value">The value to inspect</param>
+            <returns>The DisplayAttribute if it exists, otherwise null</returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.GenericsExtensions">
+            <summary>
+            Extensions using generics
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.GenericsExtensions.In``1(``0,``0[])">
+            <summary>
+            Checks to see if the extended item is in the list
+            </summary>
+            <typeparam name="T">The type of the items</typeparam>
+            <param name="extended">The item to look for in the <paramref name="list"/></param>
+            <param name="list">The list of items to look in for the <paramref name="extended"/></param>
+            <returns>True if the <paramref name="extended"/> is in the <paramref name="list"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.GenericsExtensions.In``1(``0,System.Collections.Generic.IEqualityComparer{``0},``0[])">
+            <summary>
+            Checks to see if the extended item is in the list using the provided comparer
+            </summary>
+            <typeparam name="T">The type of the items</typeparam>
+            <param name="extended">The item to look for in the <paramref name="list"/></param>
+            <param name="comparer">The comparer to use when checking for equality</param>
+            <param name="list">The list of items to look in for the <paramref name="extended"/></param>
+            <returns>True if the <paramref name="extended"/> is in the <paramref name="list"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.GenericsExtensions.In``1(``0,System.Func{``0,``0,System.Boolean},``0[])">
+            <summary>
+            Checks to see if the extended item is in the list using the provided comparer
+            </summary>
+            <typeparam name="T">The type of the items</typeparam>
+            <param name="extended">The item to look for in the <paramref name="list"/></param>
+            <param name="comparer">A function to compare the items</param>
+            <param name="list">The list of items to look in for the <paramref name="extended"/></param>
+            <returns>True if the <paramref name="extended"/> is in the <paramref name="list"/></returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.NumericExtensions">
+            <summary>
+            Extensions for numeric data types
+            </summary>
+        </member>
+        <member name="F:LB.Utility.Extensions.NumericExtensions._dataSizes">
+            <summary>
+            List of Data Sizes for the ToDataSize methods
+            </summary>
+        </member>
+        <member name="F:LB.Utility.Extensions.NumericExtensions._romanNumerals">
+            <summary>
+            List of Roman Numerals for the <see cref="M:LB.Utility.Extensions.NumericExtensions.ToRomanNumerals(System.Int32)"/> method
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.Between(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Checks that the value is between the min and max inclusive.  Returns the value
+            unless it is outside the range when it will return the min or max as appropriate
+            </summary>
+            <param name="extended"></param>
+            <param name="min"></param>
+            <param name="max"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToFeetInches(System.Int32,System.String,System.IFormatProvider)">
+            <summary>
+            Returns the value in inches to a string in the format ##'##"
+            </summary>
+            <param name="extended"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToFeetInches(System.Double,System.String,System.IFormatProvider)">
+            <summary>
+            Returns the value in inches to a string in the format given
+            
+            f = feet
+            F = feet even if zero
+            i = inches
+            I = inches even if zero
+            n = total inches
+            </summary>
+            <param name="extended"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToOrdinal(System.Int32)">
+            <summary>
+            Adds the ordinal suffix to an <see cref="T:System.Int32"/>
+            </summary>
+            <param name="extended">The <see cref="T:System.Int32"/> to add the suffix to</param>
+            <returns>The orginal with it's appropriate suffix</returns>
+            <remarks>Currently only supports English</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToOrdinal(System.Int32,System.Boolean)">
+            <summary>
+            Adds the ordinal suffix to an <see cref="T:System.Int32"/>
+            </summary>
+            <param name="extended">The <see cref="T:System.Int32"/> to add the suffix to</param>
+            <returns>The orginal with it's appropriate suffix</returns>
+            <remarks>Currently only supports English</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToText(System.Int32)">
+            <summary>
+            Converts an <see cref="T:System.Int32"/> to its numeric word
+            </summary>
+            <param name="extended">The <see cref="T:System.Int32"/> to convert</param>
+            <returns>The numeric word for the <see cref="T:System.Int32"/></returns>
+            <remarks>Currently only supports English</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToText(System.Int64)">
+            <summary>
+            Converts an <see cref="T:System.Int32"/> to its numeric word
+            </summary>
+            <param name="extended">The <see cref="T:System.Int32"/> to convert</param>
+            <returns>The numeric word for the <see cref="T:System.Int32"/></returns>
+            <remarks>Currently only supports English</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToRomanNumerals(System.Int32)">
+            <summary>
+            Returns the Roman Numeral equivalent of the provided integer
+            </summary>
+            <remarks>
+            Roman numerals only support numbers between 1 and 4000.  Numbers outside of this range are returned as Arabic numbers.
+            </remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToDataSize(System.Int32)">
+            <summary>
+            Returns the integer as a data size String
+            </summary>
+            <param name="extended">The integer to format</param>
+            <returns>The integer as a data size String</returns>
+            <example>12345 => 1.23kb</example>
+            <exception cref="T:System.ArgumentException">Thrown if the value is a negative number</exception>
+        </member>
+        <member name="M:LB.Utility.Extensions.NumericExtensions.ToDataSize(System.UInt64,System.String)">
+            <summary>
+            Returns the integer as a data size String
+            </summary>
+            <param name="extended">The integer to format</param>
+            <returns>The integer as a data size String</returns>
+            <example>12345 => 1.23kb</example>
+        </member>
+        <member name="T:LB.Utility.Extensions.StringBuilderExtensions">
+            <summary>
+            Extenions methods for the StringBuilder type
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringBuilderExtensions.IsNullOrEmpty(System.Text.StringBuilder)">
+            <summary>
+            Returns true if the string builder is empty
+            </summary>
+            <param name="extended">The <see cref="T:System.Text.StringBuilder"/> to check</param>
+            <returns>
+            true if the value parameter is null or an empty string (""); otherwise, false.
+            </returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringBuilderExtensions.IsNullOrWhitespace(System.Text.StringBuilder)">
+            <summary>
+            Returns true if the string builder is empty
+            </summary>
+            <param name="extended">The <see cref="T:System.Text.StringBuilder"/> to check</param>
+            <returns>
+            true if the value parameter is null or System.String.Empty, or if value consists exclusively of white-space characters; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.StringExtensions">
+            <summary>
+            Extension methods for the String data type
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.AOrAn(System.String)">
+            <summary>
+            Determines if the indeterminite article before the string should be A or An
+            </summary>
+            <param name="value">The string to evaluate</param>
+            <returns>The <paramref name="value"/> prefixed with an "a" or "an".</returns>
+            <remarks>Only works with English</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.GetValueOrDefault(System.String)">
+            <summary>
+            Returns an empty string if extended is null
+            </summary>
+            <param name="extended">The string to evaluate</param>
+            <returns>If the string is null, an <see cref="F:System.String.Empty"/>; otherwise, <paramref name="extended"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.GetValueOrDefault(System.String,System.String)">
+            <summary>
+            Returns the defaultValue if extended is null
+            </summary>
+            <param name="extended">The string to evaluate</param>
+            <param name="defaultValue">The value to return if <pararef name="extended" /> is null</param>
+            <returns>If the string is null, an <see cref="F:System.String.Empty"/>; otherwise, <paramref name="defaultValue"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.HasValue(System.String,System.Boolean)">
+            <summary>
+            Returns true if <paramref name="extended"/> has a value
+            </summary>
+            <param name="extended">The string to check</param>
+            <param name="allowWhitespace">Consider whitespace as a value</param>
+            <returns>True if the String? has a value; otherwise false</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Indicates whether a specified string is null or empty.
+            </summary>
+            <param name="extended">The string to evaluate</param>
+            <returns>true if the value parameter is null or <see cref="F:System.String.Empty"/>.</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.IsNullOrEmpty(System.String,System.String)">
+            <summary>
+            Returns the defaultvalue if extended is null or empty string
+            </summary>		
+            <param name="extended">The string to evaluate</param>
+            <param name="defaultValue">The value to return if <pararef name="extended" /> is null</param>
+            <returns>If the string is null or equal to <see cref="F:System.String.Empty"/> <paramref name="defaultValue"/>; otherwise, <paramref name="extended"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.IsNullOrWhitespace(System.String,System.String)">
+            <summary>
+            Returns the defaultvalue if extended is null or whitespace
+            </summary>		
+            <param name="extended">The string to evaluate</param>
+            <param name="defaultValue">The value to return if <pararef name="extended" /> is null</param>
+            <returns>If the string is null, <see cref="F:System.String.Empty"/>, or consists exclusively of white-space characters <paramref name="defaultValue"/>; otherwise, <paramref name="extended"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.IsNullOrWhitespace(System.String)">
+            <summary>
+            Indicates whether a specified string is null, empty, or consists only of white-space characters.
+            </summary>
+            <param name="extended">The string to evaluate</param>
+            <returns>true if the value parameter is null or <see cref="F:System.String.Empty"/>, or if value consists exclusively of white-space characters.</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.RemoveAll(System.String,System.String[])">
+            <summary>
+            Removes the listed items from the string
+            </summary>
+            <param name="extended"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.RemoveAll(System.String,System.Char[])">
+            <summary>
+            Removes the listed items from the string
+            </summary>
+            <param name="extended"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.RemoveArticles(System.String)">
+            <summary>
+            Remove articles from the beginning of strings
+            </summary>
+            <param name="extended">The string to remove articles from</param>
+            <returns>The string minus any articles found at the beginning</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.RemoveFirst(System.String,System.String)">
+            <summary>
+            Removes the first instance of value in the string.  If not found returns the original string.
+            </summary>
+            <param name="extended">The string to manipulate</param>
+            <param name="value">The value to find</param>
+            <returns>The <paramref name="extended"/> sans the first instance of <paramref name="value"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.RemoveLast(System.String,System.String)">
+            <summary>
+            Removes the last instance of value in the string.  If not found returns the original string.
+            </summary>
+            <param name="extended">The string to manipulate</param>
+            <param name="value">The value to find</param>
+            <returns>The <paramref name="extended"/> sans the last instance of <paramref name="value"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.Right(System.String,System.Int32)">
+            <summary>
+            Returns the first <paramref name="characters"/> characters of the right portion of a string
+            </summary>
+            <param name="extended">The string to manipulate</param>
+            <param name="characters">The number of characters to select</param>
+            <returns>A substring of <paramref name="extended"/></returns>
+            <remarks>if <paramref name="characters"/> is greater than the length of <paramref name="extended"/>, <paramref name="extended"/> is returned unchanged.</remarks>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.Split(System.String,System.Int32)">
+            <summary>
+            Splits a string into evenly sized parts
+            </summary>
+            <param name="extended">The string to split</param>
+            <param name="partSize">The number of characters per substring</param>
+            <returns>A <see cref="T:System.Collections.Generic.List`1"/> of substrings from <paramref name="extended"/></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.Split(System.String,System.Char,System.Char)">
+            <summary>
+            Split a string on a separator character except when escaped by <paramref name="escapeCharacter"/>
+            </summary>
+            <param name="extended">The String to separate</param>
+            <param name="separator">The Char to split the string on</param>
+            <param name="escapeCharacter">The Char to escape the <paramref name="separator"/></param>
+            <returns>A list of the separated strings</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.Split(System.String,System.Char,System.Char,System.Boolean)">
+            <summary>
+            Split a string on a separator character except when escaped by <paramref name="escapeCharacter"/>
+            </summary>
+            <param name="extended">The String to separate</param>
+            <param name="separator">The Char to split the string on</param>
+            <param name="escapeCharacter">The Char to escape the <paramref name="separator"/></param>
+            <param name="removeEmptyEntries">If true, remove any result that is a <see cref="F:System.String.Empty"/></param>
+            <returns>A list of the separated strings</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.SplitOnCaps(System.String,System.Char)">
+            <summary>
+            Inserts a character between lowercase and uppercase letters
+            </summary>
+            <param name="extended"></param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.ToHTMLId(System.String)">
+            <summary>
+            Converts a string to a valid html id by removing all non-alphanumeric characters
+            </summary>
+            <param name="extended">The string to convert</param>
+            <returns></returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.ToTitleCase(System.String)">
+            <summary>
+            Converts a string to title case
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.StringExtensions.Val(System.String)">
+            <summary>
+            Returns the numbers contained in a string as a numeric value of appropriate type.
+            </summary>
+            <param name="extended"></param>
+            <returns></returns>
+        </member>
+        <member name="T:LB.Utility.Extensions.TypeExtensions">
+            <summary>
+            Extension methods for the <see cref="T:System.Type"/> data type
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.TypeExtensions.IsNumeric(System.Type)">
+            <summary>
+            Returns true if the type is numeric
+            </summary>
+        </member>
+        <member name="T:LB.Utility.Extensions.UnitConversionExtensions">
+            <summary>
+            Unit Conversion helpers
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Extensions.UnitConversionExtensions.InchesToCentimeters(System.Decimal)">
+            <summary>
+            Converts Inches to Centimeters
+            </summary>
+            <param name="inches">The total inches</param>
+            <returns>The number of Centimeters</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.UnitConversionExtensions.CentimetersToInches(System.Decimal)">
+            <summary>
+            Converts Centimeters to Inches
+            </summary>
+            <param name="cm">The total centimeters</param>
+            <returns>The number of Inches</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.UnitConversionExtensions.FarenheitToCelsius(System.Decimal)">
+            <summary>
+            Converts Farenheit to Celsius
+            </summary>
+            <param name="farenheit">Degrees Farenheit</param>
+            <returns>Degrees Celsius</returns>
+        </member>
+        <member name="M:LB.Utility.Extensions.UnitConversionExtensions.CelsiusToFarenheit(System.Decimal)">
+            <summary>
+            Converts Celsius to Farenheit
+            </summary>
+            <param name="celsius">Degrees Celsius</param>
+            <returns>Degrees Farenheit</returns>
+        </member>
+        <member name="T:LB.Utility.Pagination">
+            <summary>
+            A class to calculate pagination for lists
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.ItemsPerPageDefault">
+            <summary>
+            The default items per page used by the <see cref="P:LB.Utility.Pagination.DefaultPagination"/> factory property
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.MaxPagesToDisplayDefault">
+            <summary>
+            The default max pages to display used by the <see cref="P:LB.Utility.Pagination.DefaultPagination"/> factory property
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.DefaultPagination">
+            <summary>
+            A default instance of the <see cref="T:LB.Utility.Pagination"/> class
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Pagination.#ctor">
+            <summary>
+            Constructs a default pagination object
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Pagination.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Constructs a pagination object
+            </summary>
+            <param name="currentPage">The current page</param>
+            <param name="totalItems">The total number of items</param>
+            <param name="itemsPerPage">How many items to display per page</param>
+            <param name="maxPagesToDisplay">The number of pages to display</param>
+        </member>
+        <member name="P:LB.Utility.Pagination.EndCharacter">
+            <summary>
+            The character to display in the <see cref="P:LB.Utility.Pagination.PageList"/> for continuation in either direction
+            </summary>
+            <remarks>Default is an ellipsis character: "…"</remarks>
+        </member>
+        <member name="P:LB.Utility.Pagination.CurrentPage">
+            <summary>
+            The current page
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.TotalItems">
+            <summary>
+            The total number of items
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.ItemsPerPage">
+            <summary>
+            The number of items to display on each page
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.MaxPagesToDisplay">
+            <summary>
+            The maximum number of pages to include in the <see cref="P:LB.Utility.Pagination.PageList"/>
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.PageCount">
+            <summary>
+            The total number of pages
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.MinItem">
+            <summary>
+            The minimum index displayed on the current page
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.MaxItem">
+            <summary>
+            The maximum index displayed on the current page
+            </summary>
+        </member>
+        <member name="P:LB.Utility.Pagination.PageList">
+            <summary>
+            The list of pages to display
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Pagination.GetPageList">
+            <summary>
+            Calculates the list of pages
+            </summary>
+            <returns>A list of pages to display</returns>
+        </member>
+        <member name="T:LB.Utility.Random.PseudoRNG">
+            <summary>
+            A crossplatform pseudo random number generator
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.CreateRandomSeed">
+            <summary>
+            Generates a random seed used when no seed is provided in the constructor
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.SeedFromString(System.String)">
+            <summary>
+            Converts the <paramref name="seed"/> to a UInt64 for use as a seed
+            </summary>
+            <param name="seed">The seed for the generator</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">Thrown if the seed is an <see cref="F:System.String.Empty"/></exception>
+        </member>
+        <member name="P:LB.Utility.Random.PseudoRNG.Seed">
+            <summary>
+            The seed used to prime the generator
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.#ctor(System.String)">
+            <summary>
+            Creates a PCG32 RNG
+            </summary>
+            <param name="seed">Initial state seed</param>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.#ctor(System.UInt64,System.UInt64)">
+            <summary>
+            Creates a PCG32 RNG
+            </summary>
+            <param name="seed">Initial state seed</param>
+            <param name="sequence">Stream selector (must be odd internally)</param>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt32">
+            <summary>
+            Returns a uniformly distributed Int32 (full range).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt32(System.Int32)">
+            <summary>
+            Returns an Int32 in [0, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt32(System.Int32,System.Int32)">
+            <summary>
+            Returns an Int32 in [minInclusive, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt64">
+            <summary>
+            Returns a uniformly distributed Int64 (full range).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt64(System.Int64)">
+            <summary>
+            Returns an Int64 in [0, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextInt64(System.Int64,System.Int64)">
+            <summary>
+            Returns an Int64 in [minInclusive, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextUInt32">
+            <summary>
+            Returns a uniformly distributed 32-bit unsigned integer.
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextUInt32(System.UInt32)">
+            <summary>
+            Returns an Int32 in [0, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextUInt64">
+            <summary>
+            Returns a uniformly distributed 32-bit unsigned integer.
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextUInt64(System.UInt64,System.UInt64)">
+            <summary>
+            Returns an Int32 in [0, maxExclusive).
+            </summary>
+        </member>
+        <member name="M:LB.Utility.Random.PseudoRNG.NextDouble">
+            <summary>
+            Returns a double in [0, 1).
+            </summary>
+        </member>
+    </members>
+</doc>
