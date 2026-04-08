@@ -3,32 +3,141 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace LB.Utility.Types;
 
-public struct  Fraction
+public struct Fraction
 {
-    public Fraction(Int32 w, Int32 n, Int32 d) => (WholeNumber, Numerator, Denominator) = (w, n, d);
+    public Fraction(Int32 w, Int32 n, Int32 d)
+    {
+        WholeNumber = w;
+        Numerator = n;
+        Denominator = d;
+        Simplify();
+    }
     public Fraction(Double d)
     {
         var result = DoubleToFraction(d);
         Numerator = result.Numerator;
         Denominator = result.Denominator;
+        Simplify();
     }
 
     public Int32 WholeNumber { get; set; }
     public Int32 Numerator { get; set; }
     public Int32 Denominator { get; set; }
 
+    private void Simplify()
+    {
+        var n = Numerator;
+        var d = Denominator;
+
+        while (n > d)
+        {
+            WholeNumber++;
+            n -= d;
+        }
+    }
+
     public override Boolean Equals([NotNullWhen(true)] Object? obj)
     {
         if (obj is Fraction f)
         {
-            return f.Numerator == Numerator && f.Denominator == Denominator;
+            return f.WholeNumber == WholeNumber && f.Numerator == Numerator && f.Denominator == Denominator;
         }
         return base.Equals(obj);
     }
 
     public override String ToString()
     {
-        return $"{Numerator}/{Denominator}";
+        return $"{WholeNumber} {Numerator}/{Denominator}";
+    }
+
+    public static Fraction operator *(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        var dR = dA * dB;
+        return new Fraction(dR);
+    }
+
+    public static Fraction operator /(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        var dR = dA / dB;
+        return new Fraction(dR);
+    }
+
+    public static Double operator %(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        return dA % dB;
+    }
+
+    public static Fraction operator +(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        var dR = dA + dB;
+        return new Fraction(dR);
+    }
+
+    public static Fraction operator -(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        var dR = dA - dB;
+        return new Fraction(dR);
+    }
+
+    public static Boolean operator >(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        return dA > dB;
+    }
+
+    public static Boolean operator <(Fraction a, Fraction b)
+    {
+        var dA = (Double)a;
+        var dB = (Double)b;
+        return dA < dB;
+    }
+
+    public static Boolean operator <=(Fraction a, Fraction b)
+    {
+        return a < b || a == b;
+    }
+
+    public static Boolean operator >=(Fraction a, Fraction b)
+    {
+        return a > b || a == b;
+    }
+
+    public static Boolean operator ==(Fraction a, Fraction b)
+    {
+        return a.Equals(b);
+    }
+
+    public static Boolean operator !=(Fraction a, Fraction b)
+    {
+        return !a.Equals(b);
+    }
+
+    public static explicit operator Double(Fraction a)
+    {
+        return a.WholeNumber + ((Double)a.Numerator / a.Denominator);
+    }
+
+    private static (Fraction a, Fraction b) Normalize(Fraction a, Fraction b)
+    {
+        var lcm = LCM(a.Denominator, b.Denominator);
+        return (ApplyLCM(a, lcm), ApplyLCM(b, lcm));
+    }
+
+    private static Fraction ApplyLCM(Fraction f, Int32 lcm)
+    {
+        var mult = lcm / f.Denominator;
+        return new Fraction(f.WholeNumber, f.Numerator * mult, f.Denominator * mult);
     }
 
     private static Fraction DoubleToFraction(Double value)
@@ -47,7 +156,7 @@ public struct  Fraction
         return new Fraction(wholeNumber, numerator, denominator);
     }
 
-    private static Int32 GCD(Int32 numerator, Int32 denominator)
+    public static Int32 GCD(Int32 numerator, Int32 denominator)
     {
         var d = denominator;
         var n = numerator;
@@ -62,68 +171,9 @@ public struct  Fraction
         return n;
     }
 
-    //// Source - https://stackoverflow.com/a/32903747
-    //private static Fraction RealToFraction(Double value, Double accuracy)
-    //{
-    //    if (Double.IsNaN(value)) throw new ArgumentException("Fraction does not support NaN.", nameof(value));
-    //    if (Double.IsInfinity(value)) throw new ArgumentException("Fraction does not support Infinity.", nameof(value));
-    //    if (accuracy <= 0.0 || accuracy >= 1.0)
-    //        throw new ArgumentOutOfRangeException(nameof(accuracy), "Must be > 0 and < 1.");
-
-    //    Int32 sign = Math.Sign(value);
-
-    //    if (sign == -1)
-    //    {
-    //        value = Math.Abs(value);
-    //    }
-
-    //    // Accuracy is the maximum relative error; convert to absolute maxError
-    //    double maxError = sign == 0 ? accuracy : value * accuracy;
-
-    //    Int32 n = (Int32)Math.Floor(value);
-    //    value -= n;
-
-    //    if (value < maxError)
-    //    {
-    //        return new Fraction(sign * n, 1);
-    //    }
-
-    //    if (1 - maxError < value)
-    //    {
-    //        return new Fraction(sign * (n + 1), 1);
-    //    }
-
-    //    // The lower fraction is 0/1
-    //    Int32 lower_n = 0;
-    //    Int32 lower_d = 1;
-
-    //    // The upper fraction is 1/1
-    //    Int32 upper_n = 1;
-    //    Int32 upper_d = 1;
-
-    //    while (true)
-    //    {
-    //        // The middle fraction is (lower_n + upper_n) / (lower_d + upper_d)
-    //        Int32 middle_n = lower_n + upper_n;
-    //        Int32 middle_d = lower_d + upper_d;
-
-    //        if (middle_d * (value + maxError) < middle_n)
-    //        {
-    //            // real + error < middle : middle is our new upper
-    //            upper_n = middle_n;
-    //            upper_d = middle_d;
-    //        }
-    //        else if (middle_n < (value - maxError) * middle_d)
-    //        {
-    //            // middle < real - error : middle is our new lower
-    //            lower_n = middle_n;
-    //            lower_d = middle_d;
-    //        }
-    //        else
-    //        {
-    //            // Middle is our best fraction
-    //            return new Fraction((n * middle_d + middle_n) * sign, middle_d);
-    //        }
-    //    }
-    //}
+    public static Int32 LCM(Int32 a, Int32 b)
+    {
+        var gcd = GCD(a, b);
+        return a / gcd * b; 
+    }
 }

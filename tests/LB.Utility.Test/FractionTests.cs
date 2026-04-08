@@ -28,4 +28,22 @@ public sealed class FractionTests
         Assert.AreEqual(n, fraction.Numerator);
         Assert.AreEqual(d, fraction.Denominator);
     }
+
+    [TestMethod]
+    public void AddFractions()
+    {
+        var a = new Fraction(0, 1, 2);
+        var b = new Fraction(0, 1, 4);
+        var c = a + b;
+        Assert.AreEqual(new Fraction(0, 3, 4), c);
+    }
+
+    [TestMethod]
+    public void SubtractFractions()
+    {
+        var a = new Fraction(0, 1, 2);
+        var b = new Fraction(0, 1, 4);
+        var c = a - b;
+        Assert.AreEqual(new Fraction(0, 1, 4), c);
+    }
 }
